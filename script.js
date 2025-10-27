@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const lastUpdateDate = document.getElementById('last-update-date');
 
     // Puedes cambiar esta URL por una URL real de webcam o una imagen que se actualice
-    currentGardenPhoto.src = 'img/placeholder-huerto.jpg'; // Placeholder
+    currentGardenPhoto.src = 'placeholder-huerto.jpg'; // Placeholder
     lastUpdateDate.textContent = new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' }) + ' ' + new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
 
     // Función para manejar la compra
@@ -29,9 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p>¡Qué alegría ver cómo nuestras manzanas están cogiendo ese color rojo intenso! Hoy hemos estado revisando cada manzano, asegurándonos de que no haya plagas y de que reciban la cantidad de agua necesaria. Este año prometen una cosecha excepcional.</p>
                 <p>Aquí os dejo una pequeña foto de lo que he encontrado hoy:</p>
                 <div class="image-container">
-                    <img id="apple-tree-img" src="img/arbol_de_manzanas.png" alt="Manzanas en el árbol">
+                    <img id="apple-tree-img" src="arbol_de_manzanas.png" alt="Manzanas en el árbol">
                     <div id="falling-apple" class="falling-apple"></div>
-                    <img id="juice-bottle-img" src="img/botella_de_jugo.png" alt="Botella de jugo de manzana">
+                    <img id="juice-bottle-img" src="botella_de_jugo.png" alt="Botella de jugo de manzana">
                 </div>
                 <p>Y para refrescarnos después de un largo día en el huerto, nada como un delicioso jugo de manzana. ¡Fresco, natural y directo de nuestras mejores manzanas!</p>
                 <p>Refrescante y delicioso, proveniente de lo mejor de nuestro huerto. ¡Puro sabor natural!</p>
@@ -49,9 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h3>La recolección de esta semana: Manzanas</h3>
                 <span class="fecha">23 de Octubre de 2025</span>
                 <p>Esta semana hemos tenido una recolección abundante de manzana, que irán directamente a vuestros jugos. ¡Están en su punto óptimo de maduración, llenas de dulzura!</p>
-                <video controls src="vid/Secuencia 01.mp4" poster="img/portada_del_video.png">Tu navegador no soporta el elemento de video.</video>
+                <video controls src="Secuencia 01.mp4" poster="portada_del_video.png">Tu navegador no soporta el elemento de video.</video>
                 <p>También hemos cosechado unas manzanas increíbles. Crujientes y con un color vibrante.</p>
-                <img src="img/manzana_recoletadas.png" alt="Manzanas recién recolectadas">
+                <img src="manzana_recoletadas.png" alt="Manzanas recién recolectadas">
             </div>
             <div class="entrada-item">
                 <h3>Preparativos para la cosecha de manzanas</h3>
