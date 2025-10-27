@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Handlee&family=Indie+Flower&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Diario del Huerto</title>
+    <link rel="stylesheet" href="style.css">
+</head> 
+<body>
+    <header>
+         <div class="container">
+        <div class="logo">
+            <img src="img/tu_logo.png" alt="Logo del Diario del Huerto">
+        </div>
+        <nav>
+            <!-- ... tu navegación ... -->
+        </nav>
+    </div>
+    </header>
+
+    <main>
+        <section id="portada-huerto" class="seccion-diario">
+            <h2>Vista Actual del Huerto</h2>
+            <div class="imagen-huerto">
+                <img src="img/placeholder-huerto.jpg" alt="Foto actual del huerto" id="current-garden-photo">
+                <p class="ultima-actualizacion">Última actualización: <span id="last-update-date">Cargando...</span></p>
+            </div>
+        </section>
+
+        <section id="entradas-diario" class="seccion-diario">
+            <h2>Entradas del Diario</h2>
+            <nav class="navegacion-entradas">
+                <button onclick="mostrarEntrada('tiempo')">El tiempo de hoy</button>
+                <button onclick="mostrarEntrada('tienda')">tienda del agricultor</button>
+                <button onclick="mostrarEntrada('recoleccion')">La recolección</button>
+            </nav>
+            <div id="contenido-entrada">
+                <!-- Aquí se cargará el contenido de las entradas -->
+                <p>Selecciona una opción para ver las últimas actualizaciones del huerto.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 [Nombre de tu Empresa] - Diario del Huerto</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

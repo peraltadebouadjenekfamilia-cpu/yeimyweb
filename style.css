@@ -1,0 +1,243 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente más amigable */
+    background-color: #f8f5e9; /* Fondo gris, como papel antiguo */
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #a0cd91; /* Verde suave para el encabezado */
+    color: white;
+    padding: 1.5em 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+h1 {
+    margin: 0;
+    font-family: 'Indie Flower', cursive; /* Fuente manuscrita para el título */
+    font-size: 2.8em;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+main {
+    max-width: 900px;
+    margin: 2em auto;
+    padding: 1.5em;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border: 1px solid #e0d8c7; /* Borde sutil */
+}
+
+.seccion-diario {
+    margin-bottom: 2.5em;
+    padding-bottom: 1.5em;
+    border-bottom: 1px dashed #ccc; /* Línea de puntos como cuaderno */
+}
+
+.seccion-diario:last-child {
+    border-bottom: none;
+}
+
+h2 {
+    color: #6a8c5e; /* Verde más oscuro para subtítulos */
+    font-family: 'Handlee', cursive; /* Otra fuente manuscrita */
+    font-size: 2em;
+    border-bottom: 2px solid #a0cd91;
+    padding-bottom: 0.5em;
+    margin-top: 0;
+}
+
+.imagen-huerto {
+    text-align: center;
+    margin-top: 1.5em;
+}
+
+.imagen-huerto img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    border: 3px solid #e0d8c7; /* Marco como polaroid */
+}
+
+.ultima-actualizacion {
+    font-style: italic;
+    color: #777;
+    margin-top: 0.8em;
+}
+
+.navegacion-entradas {
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.navegacion-entradas button {
+    background-color: #a0cd91;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    margin: 0 8px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navegacion-entradas button:hover {
+    background-color: #8bbd7d;
+    transform: translateY(-2px);
+}
+
+#contenido-entrada {
+    background-color: #fcfcfc;
+    border: 1px solid #e0d8c7;
+    border-radius: 8px;
+    padding: 1.5em;
+    min-height: 150px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+
+#contenido-entrada p {
+    font-size: 1.1em;
+    color: #555;
+}
+
+/* Estilos específicos para las entradas */
+.entrada-item {
+    margin-bottom: 1.5em;
+    padding: 1em;
+    border-left: 5px solid #a0cd91;
+    background-color: #fefefe;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.entrada-item h3 {
+    color: #6a8c5e;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-family: 'Handlee', cursive;
+    font-size: 1.5em;
+}
+
+.entrada-item .fecha {
+    font-style: italic;
+    color: #888;
+    font-size: 0.9em;
+    display: block;
+    margin-bottom: 0.8em;
+}
+
+.entrada-item img, .entrada-item video {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-top: 1em;
+    display: block;
+}
+
+footer {
+    text-align: center;
+    padding: 1.5em 0;
+    background-color: #a0cd91;
+    color: white;
+    margin-top: 3em;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+}
+
+/* Fuentes de Google Fonts (añadir en el head de HTML) */
+@import url('https://fonts.googleapis.com/css2?family=Handlee&family=Indie+Flower&display=swap');
+
+/* Estilos para el contenedor de imágenes en la sección "tienda" */
+.image-container {
+    position: relative; /* Esencial para posicionar la manzana de forma absoluta */
+    display: flex;
+    flex-direction: column; /* ¡CAMBIO CLAVE: Apila los elementos verticalmente! */
+    align-items: center;   /* Centra los elementos horizontalmente */
+    /* justify-content: center;  No necesario con flex-direction: column y align-items: center para apilamiento */
+    /* align-items: flex-end;  No necesario con flex-direction: column y align-items: center para apilamiento */
+    gap: 10px; /* Reduje el gap, puedes ajustarlo */
+    margin-bottom: 20px;
+    padding-top: 20px; /* Para asegurar espacio superior para la manzana que cae */
+    padding-bottom: 20px; /* Para asegurar espacio inferior para la botella */
+}
+
+.image-container #apple-tree-img {
+    max-width: 40%; /* Ajusta el tamaño del árbol */
+    height: auto;
+    display: block;
+    margin-bottom: 5px; /* Espacio entre el árbol y el resto del contenido */
+}
+
+.image-container #juice-bottle-img {
+    max-width: 20%; /* Ajusta el tamaño de la botella para que no sea tan grande como el árbol */
+    height: auto;
+    display: block;
+    margin-top: 5px; /* Espacio entre el árbol y la botella */
+}
+
+
+/* Estilo para el botón de compra */
+.buy-button {
+    background-color: #4CAF50; /* Color verde */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    margin-top: 20px; /* Espacio arriba del botón */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    transition: background-color 0.3s ease;
+}
+
+.buy-button:hover {
+    background-color: #45a049;
+}
+
+/* Estilo para la manzana que cae */
+.falling-apple {
+    position: absolute; /* Posicionamiento absoluto dentro de .image-container */
+    width: 25px; /* Tamaño de la manzana, ajustado un poco */
+    height: 25px;
+    background-color: #ff4500; /* Color rojo anaranjado para la manzana */
+    border-radius: 50%; /* Para que sea redonda */
+    z-index: 10; /* Asegura que esté por encima de las imágenes */
+    display: none; /* Oculta por defecto hasta que la animación comience */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Sombra para darle un poco de profundidad */
+    /* Para el icono de la manzana, podrías usar un background-image con un SVG o un emoji si lo prefieres */
+    /* background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red"><path d="M17.485 2.457c-.89-.89-2.313-.89-3.203 0L12 4.739l-2.282-2.282c-.89-.89-2.313-.89-3.203 0-1.78 1.78-.344 4.296 2.054 6.695L12 17.514l5.428-8.362c2.398-2.399 3.834-4.915 2.054-6.695zM12 21.05l-1.414-1.414L2.89 12.001c-2.73-2.73-2.73-7.16 0-9.89s7.16-2.73 9.89 0l.22.22.22-.22c2.73-2.73 7.16-2.73 9.89 0s2.73 7.16 0 9.89L13.414 19.636 12 21.05z"></path></svg>'); */
+    /* background-size: contain; */
+    /* background-repeat: no-repeat; */
+    /* background-position: center; */
+}
+/* Estilos existentes para la tarjeta del producto */
+.product-card {
+    background-color: #fff; /* Este será sobrescrito por el degradado */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    width: 100%;
+    max-width: 300px;
+    box-sizing: border-box;
+    margin: 10px; /* Asegura un margen si hay varias tarjetas */
+    /* NUEVO: Fondo degradado para hacer la tarjeta más atractiva */
+    /* CAMBIO CLAVE: Fondo comercial con la botella */
+    background: url('botella_de_jugo.png') no-repeat center center / contain, 
+                linear-gradient(to bottom right, #352326, #916064); /* Degradado suave como fondo secundario si la imagen no cubre todo */
+    background-blend-mode: multiply; /* Para que el degradado se mezcle con la imagen */
+}
+/* También podemos mejorar el efecto hover */
+.product-card:hover {
+    transform: translateY(-5px) scale(1.02); /* Se eleva un poco y se agranda ligeramente */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el ratón */
+}
