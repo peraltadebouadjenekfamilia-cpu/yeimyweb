@@ -213,7 +213,7 @@ footer {
     display: none; /* Oculta por defecto hasta que la animación comience */
     box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Sombra para darle un poco de profundidad */
     /* Para el icono de la manzana, podrías usar un background-image con un SVG o un emoji si lo prefieres */
-    /* background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red"><path d="M17.485 2.457c-.89-.89-2.313-.89-3.203 0L12 4.739l-2.282-2.282c-.89-.89-2.313-.89-3.203 0-1.78 1.78-.344 4.296 2.054 6.695L12 17.514l5.428-8.362c2.398-2.399 3.834-4.915 2.054-6.695zM12 21.05l-1.414-1.414L2.89 12.001c-2.73-2.73-2.73-7.16 0-9.89s7.16-2.73 9.89 0l.22.22.22-.22c2.73-2.73 7.16-2.73 9.89 0s2.73 7.16 0 9.89L13.414 19.636 12 21.05z"></path></svg>'); */
+    /* background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red"><path d="M17.485 2.457c-.89-.89-2.313-.89-3.203 0L12 4.739l-2.282-2.282c-.89-.89-3.203 0-1.78 1.78-.344 4.296 2.054 6.695L12 17.514l5.428-8.362c2.398-2.399 3.834-4.915 2.054-6.695zM12 21.05l-1.414-1.414L2.89 12.001c-2.73-2.73-2.73-7.16 0-9.89s7.16-2.73 9.89 0l.22.22.22-.22c2.73-2.73 7.16-2.73 9.89 0s2.73 7.16 0 9.89L13.414 19.636 12 21.05z"></path></svg>'); */
     /* background-size: contain; */
     /* background-repeat: no-repeat; */
     /* background-position: center; */
@@ -240,4 +240,79 @@ footer {
 .product-card:hover {
     transform: translateY(-5px) scale(1.02); /* Se eleva un poco y se agranda ligeramente */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el ratón */
+}
+
+
+/* --- CÓDIGO CSS AGREGADO PARA LA FACTURA --- */
+
+/* Estilos para el overlay de la factura */
+.factura-overlay {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 1000; /* Asegura que esté por encima de todo */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7); /* Fondo semi-transparente oscuro */
+    display: flex; /* Usamos flexbox para centrar el contenido */
+    justify-content: center;
+    align-items: center;
+}
+
+.factura-contenido {
+    background-color: #fefefe;
+    margin: auto; /* Centrado vertical y horizontalmente */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px; /* Ancho máximo para la factura */
+    border-radius: 10px;
+    position: relative; /* Para posicionar el botón de cerrar */
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    animation: fadeIn 0.5s ease-out; /* Animación de entrada */
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.cerrar-factura {
+    color: #aaa;
+    float: right; /* Flotado a la derecha */
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute; /* Posicionamiento absoluto respecto a .factura-contenido */
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.cerrar-factura:hover,
+.cerrar-factura:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.imagen-factura {
+    max-width: 100%;
+    height: auto;
+    margin-top: 15px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+
+.factura-contenido h3 {
+    color: #6a8c5e;
+    margin-bottom: 10px;
+}
+
+.factura-contenido p {
+    margin-top: 15px;
+    font-size: 1.1em;
 }
