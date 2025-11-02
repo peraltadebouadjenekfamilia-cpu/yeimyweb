@@ -326,3 +326,15 @@ footer {
 .buy-button:hover {
     background-color: #218838;
 }
+.logo-bg {
+    width: 200px;              /* ajusta el ancho para tu necesidad */
+    height: 120px;             /* ajusta la altura para tu imagen */
+    margin: 0 auto;            /* centra el fondo debajo del logo */
+    background-image: url('fondo_logo.png'); /* usa el nombre de tu archivo */
+    background-size: contain;  /* ajusta la imagen completamente */
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    top: -20px;                /* ajusta si quieres solapar el logo/fondo */
+    z-index: 1;
+}
