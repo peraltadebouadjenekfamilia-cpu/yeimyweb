@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Handlee&family=Indie+Flower&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Diario del Huerto</title>
+    <link rel="stylesheet" href="style.css">
+</head> 
+<body>
+    <header>
+         <div class="container">
+        <div class="logo">
+            <img src="tu_logo.png" alt="Logo del Diario del Huerto">
+        </div> 
+         <div class="logo-bg"></div>
+        <nav>
+            <!-- ... tu navegación ... -->
+        </nav>
+    </div>
+    </header>
+
+    <main>
+        <section id="portada-huerto" class="seccion-diario">
+            <h2>Vista Actual del Huerto</h2>
+            <div class="imagen-huerto">
+                <img src="placeholder-huerto.jpg" alt="Foto actual del huerto" id="current-garden-photo">
+                <p class="ultima-actualizacion">Última actualización: <span id="last-update-date">Cargando...</span></p>
+            </div>
+        </section>
+
+        <section id="entradas-diario" class="seccion-diario">
+            <h2>Entradas del Diario</h2>
+            <nav class="navegacion-entradas">
+                <button onclick="mostrarEntrada('tiempo')">El tiempo de hoy</button>
+                <button onclick="mostrarEntrada('tienda')">tienda del agricultor</button>
+                <button onclick="mostrarEntrada('recoleccion')">La recolección</button>
+            </nav>
+            <div id="contenido-entrada">
+                <!-- Aquí se cargará el contenido de las entradas -->
+                <p>Selecciona una opción para ver las últimas actualizaciones del huerto.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 [El monte] - Diario del Huerto</p>
+    </footer>
+
+    <!-- HTML para la factura (inicialmente oculta) -->
+    <div id="factura-overlay" class="factura-overlay">
+        <div class="factura-contenido">
+            <span class="cerrar-factura" onclick="cerrarFactura()">&times;</span>
+            <h3>¡Gracias por tu compra!</h3>
+            <img src="factura.png" alt="Factura de compra" class="imagen-factura">
+            <p>Tu pedido ha sido procesado con éxito.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
