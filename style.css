@@ -1,340 +1,173 @@
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente más amigable */
-    background-color: #f8f5e9; /* Fondo gris, como papel antiguo */
-    color: #333;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-}
+document.addEventListener('DOMContentLoaded', () => {
+    // Simulación de una foto actual del huerto
+    const currentGardenPhoto = document.getElementById('current-garden-photo');
+    const lastUpdateDate = document.getElementById('last-update-date');
 
-header {
-    background-color: #a0cd91; /* Verde suave para el encabezado */
-    color: white;
-    padding: 1.5em 0;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
+    // Puedes cambiar esta URL por una URL real de webcam o una imagen que se actualice
+    currentGardenPhoto.src = 'placeholder-huerto.jpg'; // Placeholder
+    lastUpdateDate.textContent = new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' }) + ' ' + new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
 
-h1 {
-    margin: 0;
-    font-family: 'Indie Flower', cursive; /* Fuente manuscrita para el título */
-    font-size: 2.8em;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-}
+    // Función para manejar la compra (AHORA MUESTRA LA FACTURA)
+    window.handlePurchase = () => {
+        startAppleAnimation(); // Inicia la animación al hacer clic en comprar
+        mostrarFactura(); // Muestra la factura después de la animación
+    };
 
-main {
-    max-width: 900px;
-    margin: 2em auto;
-    padding: 1.5em;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    border: 1px solid #e0d8c7; /* Borde sutil */
-}
+    // NUEVA FUNCIÓN: Mostrar la factura
+    window.mostrarFactura = () => {
+        const facturaOverlay = document.getElementById('factura-overlay');
+        if (facturaOverlay) {
+            facturaOverlay.style.display = 'flex'; // Cambia a 'flex' para centrar el contenido
+        }
+    };
 
-.seccion-diario {
-    margin-bottom: 2.5em;
-    padding-bottom: 1.5em;
-    border-bottom: 1px dashed #ccc; /* Línea de puntos como cuaderno */
-}
+    // NUEVA FUNCIÓN: Cerrar la factura
+    window.cerrarFactura = () => {
+        const facturaOverlay = document.getElementById('factura-overlay');
+        if (facturaOverlay) {
+            facturaOverlay.style.display = 'none';
+        }
+    };
 
-.seccion-diario:last-child {
-    border-bottom: none;
-}
+    // Datos simulados para las entradas del diario
+    const entradasDiario = {
+        tiempo: `
+            <div class="entrada-item">
+                <h3>El tiempo en el huerto: Soleado y con brisa</h3>
+                <span class="fecha">25 de Octubre de 2025, 12:30 PM</span>
+                <p>Hoy tenemos un día espléndido en el huerto. Temperatura actual: 22°C. Sensación térmica ideal para nuestras plantas. Viento suave del sur a 10 km/h, perfecto para la polinización.</p>
+                <p>Pronóstico para mañana: Se esperan algunas nubes por la mañana, pero el sol predominará por la tarde. ¡Condiciones óptimas para el crecimiento!</p>
+            </div>
+        `,
+        tienda: `
+              <div class="entrada-item">
+                <h3>Notas del agricultor: Cuidado de los manzanos</h3>
+                <span class="fecha">24 de Octubre de 2025</span>
+                <p>¡Qué alegría ver cómo nuestras manzanas están cogiendo ese color rojo intenso! Hoy hemos estado revisando cada manzano, asegurándonos de que no haya plagas y de que reciban la cantidad de agua necesaria. Este año prometen una cosecha excepcional.</p>
+                <p>Aquí os dejo una pequeña foto de lo que he encontrado hoy:</p>
+                <div class="image-container">
+                    <img id="apple-tree-img" src="arbol_de_manzanas.png" alt="Manzanas en el árbol">
+                    <div id="falling-apple" class="falling-apple"></div>
+                    <img id="juice-bottle-img" src="botella_de_jugo.png" alt="Botella de jugo de manzana">
+                </div>
+                <p>Y para refrescarnos después de un largo día en el huerto, nada como un delicioso jugo de manzana. ¡Fresco, natural y directo de nuestras mejores manzanas!</p>
+                <p>Refrescante y delicioso, proveniente de lo mejor de nuestro huerto. ¡Puro sabor natural!</p>
+                <button class="buy-button" onclick="handlePurchase()">Comprar Jugo de Manzana</button>
+            </div>
+            
+            <div class="entrada-item">
+                <h3>Preparando la tierra para los nuevos árboles de manzana</h3>
+                <span class="fecha">22 de Octubre de 2025</span>
+                <p>Hemos estado enriqueciendo la tierra con compost orgánico. Es fundamental para que nuestros futuros manzanos crezcan fuertes y llenos de sabor. ¡Mucha paciencia y dedicación en cada paso!</p>
+            </div>
+        `,
+        recoleccion: `
+            <div class="entrada-item">
+                <h3>La recolección de esta semana: Manzanas</h3>
+                <span class="fecha">23 de Octubre de 2025</span>
+                <p>Esta semana hemos tenido una recolección abundante de manzana, que irán directamente a vuestros jugos. ¡Están en su punto óptimo de maduración, llenas de dulzura!</p>
+                <video controls src="Secuencia 01.mp4" poster="portada_del_video.png">Tu navegador no soporta el elemento de video.</video>
+                <p>También hemos cosechado unas manzanas increíbles. Crujientes y con un color vibrante.</p>
+                <img src="manzana_recoletadas.png" alt="Manzanas recién recolectadas">
+            </div>
+            <div class="entrada-item">
+                <h3>Preparativos para la cosecha de manzanas</h3>
+                <span class="fecha">18 de Octubre de 2025</span>
+                <p>Aunque no es para jugo directamente, nuestras manzanas de mesa están casi listas. Un buen indicador de la salud general de nuestro huerto.</p>
+            </div>
+        `
+    };
 
-h2 {
-    color: #6a8c5e; /* Verde más oscuro para subtítulos */
-    font-family: 'Handlee', cursive; /* Otra fuente manuscrita */
-    font-size: 2em;
-    border-bottom: 2px solid #a0cd91;
-    padding-bottom: 0.5em;
-    margin-top: 0;
-}
+    const contenidoEntrada = document.getElementById('contenido-entrada');
+    
+    // Nueva función para el autoplay del video
+    function autoPlayVideo() {
+        // Busca el primer elemento <video> dentro del contenido de la entrada.
+        const videoElement = contenidoEntrada.querySelector('video');
+        if (videoElement) {
+            // El atributo 'autoplay' puede ser bloqueado por los navegadores.
+            // Para asegurar la reproducción, usamos el método 'play()'
+            // y añadimos 'muted' para cumplir con las políticas de autoplay de la mayoría de los navegadores.
+            videoElement.muted = true; // El video debe estar silenciado para el autoplay
+            videoElement.play()
+                .catch(error => {
+                    // Si falla (ej. por políticas de navegador), al menos queda el botón de play
+                    console.warn("Autoplay falló (esto es común en navegadores). El usuario tendrá que presionar play.", error);
+                    // Opcional: mostrar un mensaje al usuario.
+                });
+        }
+    }
 
-.imagen-huerto {
-    text-align: center;
-    margin-top: 1.5em;
-}
+    // Función para mostrar el contenido de una entrada
+    window.mostrarEntrada = (tipo) => {
+        if (entradasDiario[tipo]) {
+            contenidoEntrada.innerHTML = entradasDiario[tipo];
+            
+            // CAMBIO CLAVE: Llama a la función de autoplay si la entrada es 'recoleccion'
+            if (tipo === 'recoleccion') {
+                // Pequeño retraso para asegurar que el DOM se actualice antes de buscar el video
+                setTimeout(autoPlayVideo, 50); 
+            }
+        } else {
+            contenidoEntrada.innerHTML = `<p>No hay entradas para "${tipo}" en este momento.</p>`;
+        }
+    };
 
-.imagen-huerto img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    border: 3px solid #e0d8c7; /* Marco como polaroid */
-}
+    function startAppleAnimation() {
+        const appleTree = document.getElementById('apple-tree-img');
+        const juiceBottle = document.getElementById('juice-bottle-img');
+        const fallingApple = document.getElementById('falling-apple');
 
-.ultima-actualizacion {
-    font-style: italic;
-    color: #777;
-    margin-top: 0.8em;
-}
+        // Resetear la posición de la manzana para que se pueda animar múltiples veces
+        fallingApple.style.display = 'none';
+        fallingApple.style.transform = 'translate(0, 0)';
+        fallingApple.style.opacity = '1';
 
-.navegacion-entradas {
-    text-align: center;
-    margin-bottom: 2em;
-}
+        setTimeout(() => {
+            if (!appleTree || !juiceBottle || !fallingApple) {
+                console.warn('Elementos de animación no encontrados. Asegúrate de que las IDs son correctas y los elementos existen.');
+                return;
+            }
 
-.navegacion-entradas button {
-    background-color: #a0cd91;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    margin: 0 8px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 1.1em;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
+            const treeRect = appleTree.getBoundingClientRect();
+            const bottleRect = juiceBottle.getBoundingClientRect();
+            const containerRect = fallingApple.parentElement.getBoundingClientRect(); // El contenedor de las imágenes
 
-.navegacion-entradas button:hover {
-    background-color: #8bbd7d;
-    transform: translateY(-2px);
-}
+            // Posición inicial de la manzana (arriba del árbol, centrada)
+            // Calculamos la posición relativa dentro del contenedor `image-container`
+            const startX = (treeRect.left - containerRect.left) + (treeRect.width / 2) - (fallingApple.offsetWidth / 2);
+            const startY = (treeRect.top - containerRect.top);
 
-#contenido-entrada {
-    background-color: #fcfcfc;
-    border: 1px solid #e0d8c7;
-    border-radius: 8px;
-    padding: 1.5em;
-    min-height: 150px;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
-}
+            fallingApple.style.left = `${startX}px`;
+            fallingApple.style.top = `${startY}px`;
+            fallingApple.style.display = 'block';
 
-#contenido-entrada p {
-    font-size: 1.1em;
-    color: #555;
-}
-
-/* Estilos específicos para las entradas */
-.entrada-item {
-    margin-bottom: 1.5em;
-    padding: 1em;
-    border-left: 5px solid #a0cd91;
-    background-color: #fefefe;
-    border-radius: 5px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-}
-
-.entrada-item h3 {
-    color: #6a8c5e;
-    margin-top: 0;
-    margin-bottom: 0.5em;
-    font-family: 'Handlee', cursive;
-    font-size: 1.5em;
-}
-
-.entrada-item .fecha {
-    font-style: italic;
-    color: #888;
-    font-size: 0.9em;
-    display: block;
-    margin-bottom: 0.8em;
-}
-
-.entrada-item img, .entrada-item video {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-    margin-top: 1em;
-    display: block;
-}
-
-footer {
-    text-align: center;
-    padding: 1.5em 0;
-    background-color: #a0cd91;
-    color: white;
-    margin-top: 3em;
-    box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
-}
-
-/* Fuentes de Google Fonts (añadir en el head de HTML) */
-@import url('https://fonts.googleapis.com/css2?family=Handlee&family=Indie+Flower&display=swap');
-
-/* Estilos para el contenedor de imágenes en la sección "tienda" */
-.image-container {
-    position: relative; /* Esencial para posicionar la manzana de forma absoluta */
-    display: flex;
-    flex-direction: column; /* ¡CAMBIO CLAVE: Apila los elementos verticalmente! */
-    align-items: center;   /* Centra los elementos horizontalmente */
-    /* justify-content: center;  No necesario con flex-direction: column y align-items: center para apilamiento */
-    /* align-items: flex-end;  No necesario con flex-direction: column y align-items: center para apilamiento */
-    gap: 10px; /* Reduje el gap, puedes ajustarlo */
-    margin-bottom: 20px;
-    padding-top: 20px; /* Para asegurar espacio superior para la manzana que cae */
-    padding-bottom: 20px; /* Para asegurar espacio inferior para la botella */
-}
-
-.image-container #apple-tree-img {
-    max-width: 40%; /* Ajusta el tamaño del árbol */
-    height: auto;
-    display: block;
-    margin-bottom: 5px; /* Espacio entre el árbol y el resto del contenido */
-}
-
-.image-container #juice-bottle-img {
-    max-width: 20%; /* Ajusta el tamaño de la botella para que no sea tan grande como el árbol */
-    height: auto;
-    display: block;
-    margin-top: 5px; /* Espacio entre el árbol y la botella */
-}
+            // Posición final de la manzana (arriba de la botella, centrada)
+            // Calculamos la posición relativa dentro del contenedor `image-container`
+            const endX = (bottleRect.left - containerRect.left) + (bottleRect.width / 2) - (fallingApple.offsetWidth / 2);
+            const endY = (bottleRect.top - containerRect.top) + (bottleRect.height / 4); // Cae hacia el cuello de la botella (ajustar si es necesario)
 
 
-/* Estilo para el botón de compra */
-.buy-button {
-    background-color: #4CAF50; /* Color verde */
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1.1em;
-    margin-top: 20px; /* Espacio arriba del botón */
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    transition: background-color 0.3s ease;
-}
+            // Calcular el desplazamiento (delta) desde la posición inicial a la final
+            const deltaX = endX - startX;
+            const deltaY = endY - startY;
 
-.buy-button:hover {
-    background-color: #45a049;
-}
+            // Duración de la animación en milisegundos
+            const animationDuration = 1500; // Un poco más rápido para una caída directa
 
-/* Estilo para la manzana que cae */
-.falling-apple {
-    position: absolute; /* Posicionamiento absoluto dentro de .image-container */
-    width: 25px; /* Tamaño de la manzana, ajustado un poco */
-    height: 25px;
-    background-color: #ff4500; /* Color rojo anaranjado para la manzana */
-    border-radius: 50%; /* Para que sea redonda */
-    z-index: 10; /* Asegura que esté por encima de las imágenes */
-    display: none; /* Oculta por defecto hasta que la animación comience */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Sombra para darle un poco de profundidad */
-    /* Para el icono de la manzana, podrías usar un background-image con un SVG o un emoji si lo prefieres */
-    /* background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red"><path d="M17.485 2.457c-.89-.89-2.313-.89-3.203 0L12 4.739l-2.282-2.282c-.89-.89-3.203 0-1.78 1.78-.344 4.296 2.054 6.695L12 17.514l5.428-8.362c2.398-2.399 3.834-4.915 2.054-6.695zM12 21.05l-1.414-1.414L2.89 12.001c-2.73-2.73-2.73-7.16 0-9.89s7.16-2.73 9.89 0l.22.22.22-.22c2.73-2.73 7.16-2.73 9.89 0s2.73 7.16 0 9.89L13.414 19.636 12 21.05z"></path></svg>'); */
-    /* background-size: contain; */
-    /* background-repeat: no-repeat; */
-    /* background-position: center; */
-}
-/* Estilos existentes para la tarjeta del producto */
-.product-card {
-    background-color: #fff; /* Este será sobrescrito por el degradado */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    text-align: center;
-    transition: transform 0.3s ease;
-    width: 100%;
-    max-width: 300px;
-    box-sizing: border-box;
-    margin: 10px; /* Asegura un margen si hay varias tarjetas */
-    /* NUEVO: Fondo degradado para hacer la tarjeta más atractiva */
-    /* CAMBIO CLAVE: Fondo comercial con la botella */
-    background: url('botella_de_jugo.png') no-repeat center center / contain,
-                linear-gradient(to bottom right, #352326, #916064); /* Degradado suave como fondo secundario si la imagen no cubre todo */
-    background-blend-mode: multiply; /* Para que el degradado se mezcle con la imagen */
-}
-/* También podemos mejorar el efecto hover */
-.product-card:hover {
-    transform: translateY(-5px) scale(1.02); /* Se eleva un poco y se agranda ligeramente */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el ratón */
-}
-
-
-/* --- CÓDIGO CSS AGREGADO PARA LA FACTURA --- */
-
-/* Estilos para el overlay de la factura */
-
-.factura-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: none; /* Asegúrate de que esto esté presente */
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.factura-contenido {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    max-width: 90%;
-    max-height: 90%;
-    overflow: auto;
-    position: relative; /* Para posicionar el botón de cerrar */
-}
-
-.cerrar-factura {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 24px;
-    cursor: pointer;
-    color: #333;
-}
-
-.cerrar-factura:hover {
-    color: #000;
-}
-
-.imagen-factura {
-    max-width: 100%;
-    height: auto;
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-
-/* ... (el resto de tu CSS) ... */
-
-/* Estilos para la animación de la manzana */
-.image-container {
-    position: relative; /* Contenedor para posicionar la manzana que cae */
-    display: inline-block; /* Para que el contenedor se ajuste a las imágenes */
-}
-
-.falling-apple {
-    position: absolute;
-    width: 40px; /* Tamaño de la manzana que cae */
-    height: 40px;
-    background-image: url('manzana.png'); /* Asegúrate de tener una imagen de manzana */
-    background-size: cover;
-    display: none; /* Oculta por defecto */
-    z-index: 10;
-    pointer-events: none; /* Ignorar eventos de ratón */
-}
-
-.buy-button {
-    padding: 10px 20px;
-    background-color: #28a745; /* Un verde para comprar */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 20px;
-    transition: background-color 0.3s ease;
-}
-
-.buy-button:hover {
-    background-color: #218838;
-}
-.logo-bg {
-    width: 200px;              /* ajusta el ancho para tu necesidad */
-    height: 120px;             /* ajusta la altura para tu imagen */
-    margin: 0 auto;            /* centra el fondo debajo del logo */
-    background-image: url('fondo_logo.jpeg'); /* usa el nombre de tu archivo */
-    background-size: contain;  /* ajusta la imagen completamente */
-    background-repeat: no-repeat;
-    background-position: center;
-    position: relative;
-    top: -20px;                /* ajusta si quieres solapar el logo/fondo */
-    z-index: 1;
-}
+            // Animar la caída
+            fallingApple.animate([
+                { transform: 'translate(0, 0)', opacity: 1 },
+                { transform: `translate(${deltaX}px, ${deltaY}px)`, opacity: 0.5 }
+            ], {
+                duration: animationDuration,
+                easing: 'ease-in',
+                fill: 'forwards'
+            }).onfinish = () => {
+                fallingApple.style.display = 'none'; // Ocultar la manzana al final
+                fallingApple.style.transform = 'translate(0,0)'; // Reiniciar posición para futuras animaciones
+                fallingApple.style.opacity = '1';
+            };
+        }, 50);
+    }
+});
