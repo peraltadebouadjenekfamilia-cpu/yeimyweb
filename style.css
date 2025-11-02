@@ -330,7 +330,7 @@ footer {
     width: 200px;              /* ajusta el ancho para tu necesidad */
     height: 120px;             /* ajusta la altura para tu imagen */
     margin: 0 auto;            /* centra el fondo debajo del logo */
-    background-image: url('fondo_logo.png'); /* usa el nombre de tu archivo */
+    background-image: url('fondo_logo.jpg'); /* usa el nombre de tu archivo */
     background-size: contain;  /* ajusta la imagen completamente */
     background-repeat: no-repeat;
     background-position: center;
