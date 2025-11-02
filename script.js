@@ -7,9 +7,26 @@ document.addEventListener('DOMContentLoaded', () => {
     currentGardenPhoto.src = 'placeholder-huerto.jpg'; // Placeholder
     lastUpdateDate.textContent = new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' }) + ' ' + new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
 
-    // Función para manejar la compra
+    // Función para manejar la compra (AHORA MUESTRA LA FACTURA)
     window.handlePurchase = () => {
         startAppleAnimation(); // Inicia la animación al hacer clic en comprar
+        mostrarFactura(); // Muestra la factura después de la animación
+    };
+
+    // NUEVA FUNCIÓN: Mostrar la factura
+    window.mostrarFactura = () => {
+        const facturaOverlay = document.getElementById('factura-overlay');
+        if (facturaOverlay) {
+            facturaOverlay.style.display = 'flex'; // Cambia a 'flex' para centrar el contenido
+        }
+    };
+
+    // NUEVA FUNCIÓN: Cerrar la factura
+    window.cerrarFactura = () => {
+        const facturaOverlay = document.getElementById('factura-overlay');
+        if (facturaOverlay) {
+            facturaOverlay.style.display = 'none';
+        }
     };
 
     // Datos simulados para las entradas del diario
