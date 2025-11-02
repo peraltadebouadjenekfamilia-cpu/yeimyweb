@@ -43,8 +43,18 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 [Nombre de tu Empresa] - Diario del Huerto</p>
+        <p>&copy; 2025 [El monte] - Diario del Huerto</p>
     </footer>
+
+    <!-- HTML para la factura (inicialmente oculta) -->
+    <div id="factura-overlay" class="factura-overlay">
+        <div class="factura-contenido">
+            <span class="cerrar-factura" onclick="cerrarFactura()">&times;</span>
+            <h3>¡Gracias por tu compra!</h3>
+            <img src="factura.png" alt="Factura de compra" class="imagen-factura">
+            <p>Tu pedido ha sido procesado con éxito.</p>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
